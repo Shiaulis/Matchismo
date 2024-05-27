@@ -5,9 +5,9 @@
 //  Created by Andrius Shiaulis on 26.05.2024.
 //
 
-#import "Deck.h"
-
 @import Foundation;
+
+#import "Deck.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -34,6 +34,25 @@
     }
 }
 
+#pragma - Overriden methods -
+
+- (NSInteger)match:(NSArray<Card *> *)otherCards
+{
+    NSInteger score = 0;
+
+    if (otherCards.count == 1) {
+        PlayingCard *otherCard = (PlayingCard *)otherCards.firstObject;
+        if ([self.suit isEqualToString:otherCard.suit]) {
+            score = 1;
+        }
+        else if (self.rank == otherCard.rank) {
+            score = 4;
+        }
+    }
+
+    return score;
+}
+
 #pragma - Private API -
 
 - (NSString *)contents

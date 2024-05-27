@@ -5,9 +5,9 @@
 //  Created by Andrius Shiaulis on 26.05.2024.
 //
 
-#import "Card.h"
-
 @import Foundation;
+
+#import "Card.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

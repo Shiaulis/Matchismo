@@ -9,7 +9,7 @@
 
 @implementation Card
 
-- (int)match:(NSArray<Card *> *)otherCards
+- (NSInteger)match:(NSArray<Card *> *)otherCards
 {
     int score = 0;
     

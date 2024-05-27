@@ -18,6 +18,7 @@
 		B14546012C029C6000AA3A6E /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = B14546002C029C6000AA3A6E /* Deck.m */; };
 		B14546042C029C7300AA3A6E /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = B14546032C029C7300AA3A6E /* PlayingCard.m */; };
 		B14546072C029C8300AA3A6E /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = B14546062C029C8300AA3A6E /* PlayingCardDeck.m */; };
+		B19253212C03114400E4DF62 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = B19253202C03114400E4DF62 /* CardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		B14546032C029C7300AA3A6E /* PlayingCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayingCard.m; sourceTree = "<group>"; };
 		B14546052C029C8300AA3A6E /* PlayingCardDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeck.h; sourceTree = "<group>"; };
 		B14546062C029C8300AA3A6E /* PlayingCardDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeck.m; sourceTree = "<group>"; };
+		B192531F2C03114400E4DF62 /* CardMatchingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
+		B19253202C03114400E4DF62 /* CardMatchingGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 		B14545FE2C029B6900AA3A6E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B192531F2C03114400E4DF62 /* CardMatchingGame.h */,
+				B19253202C03114400E4DF62 /* CardMatchingGame.m */,
 				B14545FB2C029B3D00AA3A6E /* Card.h */,
 				B14545FC2C029B3D00AA3A6E /* Card.m */,
 				B14545FF2C029C6000AA3A6E /* Deck.h */,
@@ -185,6 +190,7 @@
 				B14545FD2C029B3D00AA3A6E /* Card.m in Sources */,
 				B14546072C029C8300AA3A6E /* PlayingCardDeck.m in Sources */,
 				B14545E92C02927C00AA3A6E /* CardGameViewController.m in Sources */,
+				B19253212C03114400E4DF62 /* CardMatchingGame.m in Sources */,
 				B14546042C029C7300AA3A6E /* PlayingCard.m in Sources */,
 				B14545E32C02927C00AA3A6E /* AppDelegate.m in Sources */,
 				B14545F42C02927D00AA3A6E /* main.m in Sources */,
