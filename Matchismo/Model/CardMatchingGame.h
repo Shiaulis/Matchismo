@@ -19,6 +19,7 @@ typedef enum : NSUInteger {
 @interface CardMatchingGame : NSObject
 
 @property (nonatomic, readonly) NSInteger score;
+@property (nonatomic, readonly) NSString *state;
 
 
 - (instancetype)initWithCardCount:(NSUInteger)count

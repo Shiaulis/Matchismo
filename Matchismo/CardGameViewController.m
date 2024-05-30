@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *startNewGameButton;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @end
 
@@ -108,6 +109,7 @@
     [self updateGameModeSwitch];
     [self updateNewGameButton];
     [self updateScoreCounter];
+    [self updateStatusLabel];
 
 //    NSLog(@"UI Updated");
 }
@@ -136,6 +138,11 @@
 - (void)updateScoreCounter
 {
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
+}
+
+- (void)updateStatusLabel
+{
+    self.statusLabel.text = self.game.state;
 }
 
 - (NSString *)titleForCard:(Card *)card

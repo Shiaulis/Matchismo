@@ -391,7 +391,7 @@
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZE-RQ-10d">
-                                <rect key="frame" x="103" y="543" width="186" height="55"/>
+                                <rect key="frame" x="103" y="590" width="186" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -402,6 +402,13 @@
                                     <action selector="newGameTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fBZ-sH-ewe"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dy6-ug-07h">
+                                <rect key="frame" x="56" y="520" width="281" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -410,6 +417,7 @@
                         <outlet property="gameModeSwitch" destination="OTU-ZT-qwc" id="Fx8-lo-iaG"/>
                         <outlet property="scoreLabel" destination="NDV-jk-9qY" id="wkZ-W6-fiI"/>
                         <outlet property="startNewGameButton" destination="rZE-RQ-10d" id="skI-fx-XIl"/>
+                        <outlet property="statusLabel" destination="Dy6-ug-07h" id="QCk-oV-H0B"/>
                         <outletCollection property="cardButtons" destination="vJl-jR-2kX" id="8ci-tg-Ujg"/>
                         <outletCollection property="cardButtons" destination="Aet-Te-igE" id="cSE-KT-BVJ"/>
                         <outletCollection property="cardButtons" destination="EGA-tQ-rHk" id="Po1-Ia-0PX"/>

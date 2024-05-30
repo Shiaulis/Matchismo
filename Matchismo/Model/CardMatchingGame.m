@@ -14,6 +14,7 @@ static const int COST_TO_CHOOSE = 1;
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray<Card *> *cards;
 @property (nonatomic, readonly) CardMatchingGameMode mode;
+@property (nonatomic, readwrite) NSString *state;
 
 @property (nonatomic, readonly) NSInteger matchBonus;
 @property (nonatomic, readonly) NSInteger mismatchPenalty;
@@ -80,6 +81,7 @@ static const int COST_TO_CHOOSE = 1;
     if (card.isChosen) {
         NSLog(@"%@ card is flipped back", card.contents);
         card.chosen = NO;
+        self.state = @"";
         return;
     }
 
@@ -97,18 +99,19 @@ static const int COST_TO_CHOOSE = 1;
             self.score += receivedScore;
             NSArray *matchedCards = [chosenCards arrayByAddingObject:card];
             [self markAsMatchedCards:matchedCards];
-            NSLog(@"Matched card: %@ 🟢. Received %ld points", [CardMatchingGame makeDescriptionForCards:matchedCards], receivedScore);
+            self.state = [NSString stringWithFormat:@"Matched %@ for %ld points", [CardMatchingGame makeDescriptionForCards:matchedCards], receivedScore];
         }
         else {
             NSArray *mismatchedCards = [chosenCards arrayByAddingObject:card];
             NSInteger receivedPenalty = self.mismatchPenalty;
             self.score -= receivedPenalty;
             [self deselectCards:chosenCards];
-            NSLog(@"Mismatched card: %@ 🔴. Lost %ld points", [CardMatchingGame makeDescriptionForCards:mismatchedCards], receivedPenalty);
+            self.state = [NSString stringWithFormat:@"%@ don't match! %ld points penalty!", [CardMatchingGame makeDescriptionForCards:mismatchedCards], receivedPenalty];
         }
     }
     else {
-        NSLog(@"Nothing to match with");
+        NSArray *selectedCards = [chosenCards arrayByAddingObject:card];
+        self.state = [CardMatchingGame makeDescriptionForCards:selectedCards];
     }
 
     card.chosen = YES;
