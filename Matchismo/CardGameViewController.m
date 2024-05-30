@@ -15,6 +15,7 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *cardButtons;
+@property (weak, nonatomic) IBOutlet UIButton *startNewGameButton;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
@@ -23,25 +24,65 @@
 
 #pragma - Setters and getters -
 
-- (CardMatchingGame *)game
-{
-    if (_game == nil) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[self createDeck]];
-    }
+#pragma - View Controller Life Cycle
 
-    return _game;
+- (void)viewDidLoad
+{
+    [self updateUI];
 }
 
 #pragma - IBActions -
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
+    [self startNewGameIfNeeded];
     NSUInteger chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];
     [self updateUI];
 }
 
+- (IBAction)newGameTapped:(UIButton *)sender
+{
+    [self showNewGameAlert];
+}
+
 #pragma - Private API -
+
+- (void)showNewGameAlert
+{
+    UIAlertAction *newGameAction = [UIAlertAction actionWithTitle:@"Start New Game"
+                                                            style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+        [self discardCurrentGame];
+    }];
+
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Do you want to start a new game?"
+                                                                   message:@"Previous progress will be lost"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+
+    [alert addAction:dismissAction];
+    [alert addAction:newGameAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)discardCurrentGame
+{
+    self.game = nil;
+    [self updateUI];
+}
+
+- (void)startNewGameIfNeeded
+{
+    if (self.game != nil) {
+        return;
+    }
+
+    self.game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[self createDeck]];
+}
 
 - (Deck *)createDeck
 {
@@ -50,6 +91,15 @@
 
 - (void)updateUI
 {
+    [self updateCards];
+    [self updateNewGameButton];
+    [self updateScoreCounter];
+
+    NSLog(@"UI Updated");
+}
+
+- (void)updateCards
+{
     for (UIButton *cardButton in self.cardButtons) {
         NSUInteger cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardButtonIndex];
@@ -57,7 +107,15 @@
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
     }
+}
 
+- (void)updateNewGameButton
+{
+    self.startNewGameButton.hidden = self.game == nil;
+}
+
+- (void)updateScoreCounter
+{
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
 }
 

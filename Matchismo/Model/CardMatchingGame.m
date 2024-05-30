@@ -43,6 +43,8 @@ static const int COST_TO_CHOOSE = 1;
         }
     }
 
+    NSLog(@"New game started with %lu cards", count);
+
     return self;
 }
 
