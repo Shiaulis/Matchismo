@@ -15,6 +15,7 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *cardButtons;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *startNewGameButton;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
@@ -81,7 +82,9 @@
         return;
     }
 
-    self.game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[self createDeck]];
+    self.game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
+                                                  usingDeck:[self createDeck]
+                                                       mode:[self getSelectedGameMode]];
 }
 
 - (Deck *)createDeck
@@ -89,9 +92,20 @@
     return [PlayingCardDeck new];
 }
 
+- (BOOL)didGameStart
+{
+    return self.game != nil;
+}
+
+- (CardMatchingGameMode)getSelectedGameMode
+{
+    return self.gameModeSwitch.selectedSegmentIndex;
+}
+
 - (void)updateUI
 {
     [self updateCards];
+    [self updateGameModeSwitch];
     [self updateNewGameButton];
     [self updateScoreCounter];
 
@@ -109,9 +123,14 @@
     }
 }
 
+- (void)updateGameModeSwitch
+{
+    self.gameModeSwitch.enabled = ![self didGameStart];
+}
+
 - (void)updateNewGameButton
 {
-    self.startNewGameButton.hidden = self.game == nil;
+    self.startNewGameButton.hidden = ![self didGameStart];
 }
 
 - (void)updateScoreCounter

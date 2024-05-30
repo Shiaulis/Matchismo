@@ -15,6 +15,7 @@ static const int COST_TO_CHOOSE = 1;
 
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray<Card *> *cards;
+@property (nonatomic, readonly) CardMatchingGameMode mode;
 
 @end
 
@@ -24,12 +25,15 @@ static const int COST_TO_CHOOSE = 1;
 
 - (instancetype)initWithCardCount:(NSUInteger)count
                         usingDeck:(Deck *)deck
+                             mode:(CardMatchingGameMode)mode
 {
     self = [super init];
 
     if (self == nil) {
         return self;
     }
+
+    _mode = mode;
 
     for (NSUInteger index = 0; index < count; index += 1) {
         Card *card = [deck drawRandomCard];
@@ -43,7 +47,7 @@ static const int COST_TO_CHOOSE = 1;
         }
     }
 
-    NSLog(@"New game started with %lu cards", count);
+    NSLog(@"New game started with %lu cards with %@ mode", count, [CardMatchingGame makeDescriptionForMode:mode]);
 
     return self;
 }
@@ -98,6 +102,21 @@ static const int COST_TO_CHOOSE = 1;
     }
 
     return self.cards[index];
+}
+
++ (NSString *)makeDescriptionForMode:(CardMatchingGameMode)mode
+{
+    switch (mode) {
+        case CardMatchingGameModeTwoCards:
+            return @"2 cards matching";
+            break;
+        case CardMatchingGameModeThreeCards:
+            return @"3 cards matching";
+            break;
+        default:
+            NSAssert(NO, @"Unknown mode");
+            return @"Unknown mode";
+    }
 }
 
 @end
