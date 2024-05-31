@@ -45,7 +45,9 @@
     PlayingCard *cardTwo = otherCards.firstObject;
     PlayingCard *cardThree = otherCards.count > 1 ? otherCards[1] : nil;
 
-    if ([cardOne.suit isEqualToString:cardTwo.suit] || [cardOne.suit isEqualToString:cardThree.suit] || [cardTwo.suit isEqualToString:cardThree.suit]) {
+    if ([cardOne.suit isEqualToString:cardTwo.suit] || 
+        [cardOne.suit isEqualToString:cardThree.suit] ||
+        [cardTwo.suit isEqualToString:cardThree.suit]) {
         if ([cardOne.suit isEqualToString:cardTwo.suit] && [cardOne.suit isEqualToString:cardThree.suit]) {
             NSLog(@"3 suits match");
             score += 3;

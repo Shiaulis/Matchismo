@@ -79,7 +79,7 @@
 
 - (void)startNewGameIfNeeded
 {
-    if (self.game != nil) {
+    if ([self didGameStart]) {
         return;
     }
 
@@ -108,10 +108,8 @@
     [self updateCards];
     [self updateGameModeSwitch];
     [self updateNewGameButton];
-    [self updateScoreCounter];
+    [self updateScoreLabel];
     [self updateStatusLabel];
-
-//    NSLog(@"UI Updated");
 }
 
 - (void)updateCards
@@ -135,7 +133,7 @@
     self.startNewGameButton.hidden = ![self didGameStart];
 }
 
-- (void)updateScoreCounter
+- (void)updateScoreLabel
 {
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
 }
@@ -152,7 +150,7 @@
 
 - (UIImage *)backgroundImageForCard:(Card *)card
 {
-    return [UIImage imageNamed:card.isChosen ? @"cardFront" : @"cardBack"];
+    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
 }
 
 @end

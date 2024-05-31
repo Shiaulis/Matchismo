@@ -103,10 +103,9 @@ static const int COST_TO_CHOOSE = 1;
         }
         else {
             NSArray *mismatchedCards = [chosenCards arrayByAddingObject:card];
-            NSInteger receivedPenalty = self.mismatchPenalty;
-            self.score -= receivedPenalty;
+            self.score -= self.mismatchPenalty;
             [self deselectCards:chosenCards];
-            self.state = [NSString stringWithFormat:@"%@ don't match! %ld points penalty!", [CardMatchingGame makeDescriptionForCards:mismatchedCards], receivedPenalty];
+            self.state = [NSString stringWithFormat:@"%@ don't match! %ld points penalty!", [CardMatchingGame makeDescriptionForCards:mismatchedCards], self.mismatchPenalty];
         }
     }
     else {
