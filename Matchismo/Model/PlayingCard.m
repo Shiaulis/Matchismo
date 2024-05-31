@@ -36,20 +36,40 @@
 
 #pragma - Overriden methods -
 
-- (NSInteger)match:(NSArray<Card *> *)otherCards
+- (NSInteger)match:(NSArray<PlayingCard *> *)otherCards
 {
     NSInteger score = 0;
 
-    if (otherCards.count == 1) {
-        PlayingCard *otherCard = (PlayingCard *)otherCards.firstObject;
-        if ([self.suit isEqualToString:otherCard.suit]) {
-            score = 1;
+    // According to requirements it is fine to assume to have not more than 3 cards
+    PlayingCard *cardOne = self;
+    PlayingCard *cardTwo = otherCards.firstObject;
+    PlayingCard *cardThree = otherCards.count > 1 ? otherCards[1] : nil;
+
+    if ([cardOne.suit isEqualToString:cardTwo.suit] || 
+        [cardOne.suit isEqualToString:cardThree.suit] ||
+        [cardTwo.suit isEqualToString:cardThree.suit]) {
+        if ([cardOne.suit isEqualToString:cardTwo.suit] && [cardOne.suit isEqualToString:cardThree.suit]) {
+            NSLog(@"3 suits match");
+            score += 3;
         }
-        else if (self.rank == otherCard.rank) {
-            score = 4;
+        else {
+            NSLog(@"2 suits match");
+            score += 1;
         }
     }
 
+    if (cardOne.rank == cardTwo.rank || cardOne.rank == cardThree.rank || cardTwo.rank == cardThree.rank) {
+        if (cardOne.rank == cardTwo.rank && cardOne.rank == cardThree.rank) {
+            NSLog(@"3 ranks match");
+            score += 12;
+        }
+        else {
+            NSLog(@"2 ranks match");
+            score += 4;
+        }
+    }
+
+    NSLog(@"Matching score is %ld", score);
     return score;
 }
 
